@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css';
 
 import Author from './Author'
+import Comment from './Comment'
 
 class Article extends Component {
     render() {
@@ -36,6 +37,8 @@ class Article extends Component {
                         <span className="article-link-text">Share Post</span>
                     </a>
                 </div>
+                
+                <Comment />
             </div>
         )
     }
