@@ -32,6 +32,7 @@ class Comment extends Component {
         }
 
         state.comments.push(comment)
+        state.comment = ''
         this.setState(state)
     }
 
@@ -48,10 +49,19 @@ class Comment extends Component {
                     <i className="fa fa-comment-o"></i>
                     <span className="article-link-text">Submit</span>
                 </a>
-                <ol id="comments"></ol>
+                {this.state.comments.map((comment, i) => <CommentShow key={i} comment={comment} />)}
             </div>
         )
     }
+}
+
+function CommentShow (props) {
+    return (
+        <div className="comment">
+            <div>{props.comment.time.toString().substring(0, props.comment.time.toString().split('').indexOf('G'))}</div>
+            <div>{props.comment.text}</div>
+        </div>
+    )
 }
 
 export default Comment
