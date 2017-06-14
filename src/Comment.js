@@ -7,17 +7,32 @@ class Comment extends Component {
         super(props)
         this.state = {
             comment: '',
+            comments: [],
         }
 
+        this.updateComment = this.updateComment.bind(this)
         this.addComment = this.addComment.bind(this)
     }
 
-    addComment(ev) {
+    updateComment(ev) {
         ev.preventDefault()
 
         this.setState({
             comment: ev.target.value,
         })
+    }
+
+    addComment(ev) {
+        ev.preventDefault()
+
+        const state = {...this.state}
+        const comment = {
+            time: new Date(),
+            text: state.comment,
+        }
+
+        state.comments.push(comment)
+        this.setState(state)
     }
 
     render() {
@@ -26,7 +41,7 @@ class Comment extends Component {
                 <textarea
                     placeholder="Leave a Comment"
                     value={this.state.comment}
-                    onChange={this.addComment}
+                    onChange={this.updateComment}
                 >
                 </textarea>
                 <a className="article-link" href="#" onClick={this.addComment}>
